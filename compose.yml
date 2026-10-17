@@ -1,0 +1,45 @@
+# Define os serviços (containers) da aplicação.
+services:
+  
+  # ============================================================
+  # SERVIÇO DA APLICAÇÃO JAVA
+  # ============================================================
+
+  # Nome do serviço que executará a aplicação Java.
+  app:
+
+    # Imagem Docker utilizada para executar a aplicação.
+    image: triangulo_console_java_docker
+        
+    # Define as configurações necessárias para construir a imagem
+    # Docker da aplicação.
+    build:
+
+      # Define a pasta que será utilizada como contexto durante
+      # a construção da imagem.
+      #
+      # O ponto "." representa a pasta atual, onde está localizado
+      # o arquivo compose.yml.
+      #
+      # Arquivos existentes dentro dessa pasta poderão ser
+      # utilizados pelo Dockerfile durante o processo de construção.
+      context: .
+
+      # Define o nome do arquivo Dockerfile que será utilizado
+      # para construir a imagem da aplicação.
+      #
+      # Neste caso, será utilizado o arquivo "Dockerfile",
+      # localizado na pasta definida pelo "context".
+      dockerfile: Dockerfile
+
+    # Nome do container que executará a aplicação.
+    container_name: triangulo_console_java_docker
+
+    # Reinicia automaticamente o container caso ele seja
+    # encerrado inesperadamente.
+    restart: unless-stopped
+   
+    # stdin_open: true mantém a entrada padrão aberta
+    # tty: true aloca um terminal para a aplicação.
+    stdin_open: true
+    tty: true      
